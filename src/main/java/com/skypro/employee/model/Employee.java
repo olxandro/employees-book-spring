@@ -1,5 +1,7 @@
 package com.skypro.employee.model;
 
+import org.apache.commons.lang3.StringUtils;
+
 public class Employee {
     private final int id;
     private static int counter;
@@ -9,8 +11,8 @@ public class Employee {
     private final int salary;
 
     public Employee(String firstName, String lastName, int department, int salary) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.firstName = StringUtils.capitalize(firstName);
+        this.lastName = StringUtils.capitalize(lastName);
         this.department = department;
         this.salary = salary;
         id = counter++;
