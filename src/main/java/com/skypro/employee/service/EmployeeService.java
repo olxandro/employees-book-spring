@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 
 @Service
 public class EmployeeService {
-    private final Map<Integer, Employee> employees = new HashMap<>();
+    private Map<Integer, Employee> employees = new HashMap<>();
 
     public Collection<Employee> getAllEmployees() {
         return employees.values();
@@ -41,7 +41,7 @@ public class EmployeeService {
                 .sum();
     }
 
-    public Employee min() {
+    public List<Employee> getSalaryMin() {
 //        int minSalary = getSalarySum();
 //        Employee minEmp = null;
 //        for (Map.Entry<Integer, Employee> entry :
@@ -54,10 +54,11 @@ public class EmployeeService {
 //        return minEmp;
         return employees.values().stream()
                 .min(Comparator.comparing(Employee::getSalary))
-                .orElse(null);
+                .stream().toList();
+
     }
 
-    public Employee max() {
+    public List<Employee> getSalaryMax() {
 //        int max = 0;
 //        Employee maxEmp = null;
 //        for (Map.Entry<Integer, Employee> entry :
@@ -70,7 +71,7 @@ public class EmployeeService {
 //        return maxEmp;
         return employees.values().stream()
                 .max(Comparator.comparing(Employee::getSalary))
-                .orElse(null);
+                .stream().toList();
     }
 
     public List<Employee> highSalary() {
@@ -85,7 +86,7 @@ public class EmployeeService {
         return employeeList;
     }
 
-    private double mediumSalary() {
+    public double mediumSalary() {
 //        int sum = 0;
 //        for (Map.Entry<Integer, Employee> entry:
 //                employees.entrySet()) {
